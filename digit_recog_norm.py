@@ -33,7 +33,8 @@ def on_mouse(event, x, y, flags, param):
     elif event == cv2.EVENT_MOUSEMOVE:  # Moving / dragging
         if flags & cv2.EVENT_FLAG_LBUTTON:
             # Draw white lines as the cursor moves - writing the digit
-            cv2.line(screen, (old_x, old_y), (x, y), (255, 255, 255), 20, cv2.LINE_AA)
+            cv2.line(screen, (old_x, old_y), (x, y), (255, 255, 255), 20, 
+                     cv2.LINE_AA)
             old_x, old_y = x, y
             cv2.imshow('Screen', screen)
 
@@ -142,7 +143,7 @@ def write_and_classify_digit(hog, svm):
 
             # Determine the user-written digit
             _, res = svm.predict(test_desc)
-            print(int(res[0, 0]))
+            print("The digit is:", int(res[0, 0]))
 
             # Reset black input screen
             screen.fill(0)
@@ -189,8 +190,8 @@ def main():
         desc.append(hog.compute(img))
 
     # Train descriptors 
-    train_desc = np.array(desc)                          # shape: (5000, 324, 1)
-    train_desc = train_desc.squeeze().astype(np.float32) # shape: (5000, 324)
+    train_desc = np.array(desc)                          # shape:(5000, 324, 1)
+    train_desc = train_desc.squeeze().astype(np.float32) # shape:(5000, 324)
 
     # Make training labels: 500 0s, 500 1s, ..., 500 9s 
     train_labels = np.repeat(np.arange(10), len(train_desc) / 10)
