@@ -178,7 +178,7 @@ def write_and_classify_digit(hog, svm):
 def main():
 
     # Attain the image file containing 5000 digit samples
-    digits = cv2.imread('./Projects/digit_recognition/digits.png',
+    digits = cv2.imread('./digits.png',
                         cv2.IMREAD_GRAYSCALE)
 
     # Check for opening image
