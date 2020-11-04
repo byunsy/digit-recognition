@@ -31,3 +31,13 @@ Move to your specific directory and execute the program.
 ```bash
 python digit_recog_norm.py
 ```
+
+## Demonstrations
+
+The program accurately recognizes all digits.
+
+![](images/digit_recog.gif)
+
+Normalization process helps the program recognize digits written off the center (near the edges).
+
+![](images/digit_recog2.gif)
