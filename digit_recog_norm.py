@@ -1,9 +1,9 @@
-"""----------------------------------------------------------------------------
+"""============================================================================
 TITLE       : digit_recog_norm.py
-BY          : Sang Yoon Byu
+BY          : Sang Yoon Byun
 DESCRIPTION : A program that can recognize and identify handwritten 
               digits (from 0 to 9) by a user.
-----------------------------------------------------------------------------"""
+============================================================================"""
 
 import sys
 import numpy as np
@@ -23,8 +23,6 @@ PURPOSE:
 PRODUCES:
     None - a void function
 ============================================================================"""
-
-
 def on_mouse(event, x, y, flags, param):
 
     global old_x, old_y
@@ -46,7 +44,6 @@ def on_mouse(event, x, y, flags, param):
             old_x, old_y = x, y
             cv2.imshow('Screen', screen)
 
-
 """============================================================================
 PROCEDURE:
     norm_digits
@@ -58,8 +55,6 @@ PURPOSE:
 PRODUCES:
     dst, a new image with a digit at the center of the image
 ============================================================================"""
-
-
 def norm_digit(img):
 
     # Dictionary of all the moments within the given image
@@ -80,7 +75,6 @@ def norm_digit(img):
 
     return dst
 
-
 """============================================================================
 PROCEDURE:
     display_text
@@ -92,8 +86,6 @@ PURPOSE:
 PRODUCES:
     None - a void function
 ============================================================================"""
-
-
 def display_text(img, text):
 
     # Set up text elements
@@ -114,7 +106,6 @@ def display_text(img, text):
     cv2.putText(img, text, (text_x, text_y), text_font, text_scale,
                 text_color, text_thickness, cv2.LINE_AA)
 
-
 """============================================================================
 PROCEDURE:
     write_and_classify_digit
@@ -125,10 +116,8 @@ PURPOSE:
     Open a blank screen for the user to write a digit. Then use the 
     trained SVM to classify user-written digit 
 PRODUCES:
-    
+    None - a void function
 ============================================================================"""
-
-
 def write_and_classify_digit(hog, svm):
 
     # Initialized x, y values for writing digits
@@ -169,12 +158,9 @@ def write_and_classify_digit(hog, svm):
 
     cv2.destroyAllWindows()
 
-
 """============================================================================
                                      MAIN
 ============================================================================"""
-
-
 def main():
 
     # Attain the image file containing 5000 digit samples
@@ -209,7 +195,7 @@ def main():
 
     # Train descriptors
     train_desc = np.array(desc)                          # shape:(5000, 324, 1)
-    train_desc = train_desc.squeeze().astype(np.float32)  # shape:(5000, 324)
+    train_desc = train_desc.squeeze().astype(np.float32) # shape:(5000, 324)
 
     # Make training labels: 500 0s, 500 1s, ..., 500 9s
     train_labels = np.repeat(np.arange(10), len(train_desc) / 10)
